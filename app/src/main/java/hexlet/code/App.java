@@ -15,17 +15,17 @@ import java.util.concurrent.Callable;
         description = "Compares two configuration files and shows a difference.")
 class App implements Callable<Integer> {
 
-  /*  @Parameters(description = "path to 1st file.")
-    private File filepath1;
+    @Parameters(description = "path to 1st file.")
+    private String filepath1;
 
     @Parameters(description = "path to 2nd file.")
-    private File filepath2;*/
+    private String filepath2;
 
-  /*  @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
-    private String format = "format";*/
+    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
+    private String format = "format";
 
     @Override
-    public Integer call() throws Exception { // your business logic goes here...
+    public Integer call() throws Exception {
        /* byte[] fileContents1 = Files.readAllBytes(filepath1.toPath());
         byte[] fileContents2 = Files.readAllBytes(filepath2.toPath());
         byte[] digest1 = MessageDigest.getInstance(format).digest(fileContents1);
