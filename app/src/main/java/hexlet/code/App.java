@@ -10,28 +10,27 @@ import java.math.BigInteger;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.util.concurrent.Callable;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
         description = "Compares two configuration files and shows a difference.")
 class App implements Callable<Integer> {
 
-    @Parameters(description = "path to 1st file.")
+    @Parameters(index = "0", paramLabel = "filepath1", description = "path to 1st file.")
     private String filepath1;
 
-    @Parameters(description = "path to 2nd file.")
+    @Parameters(index = "1", paramLabel = "filepath2", description = "path to 2nd file.")
     private String filepath2;
 
-    @Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
+    @Option(names = {"-f", "--format"}, paramLabel = "format", description = "output format [default: stylish]")
     private String format = "format";
 
     @Override
     public Integer call() throws Exception {
-       /* byte[] fileContents1 = Files.readAllBytes(filepath1.toPath());
-        byte[] fileContents2 = Files.readAllBytes(filepath2.toPath());
-        byte[] digest1 = MessageDigest.getInstance(format).digest(fileContents1);
-        byte[] digest2 = MessageDigest.getInstance(format).digest(fileContents2);
-        System.out.printf("%0" + (digest1.length*2) + "x%n", new BigInteger(1, digest1));
-        System.out.printf("%0" + (digest2.length*2) + "x%n", new BigInteger(1, digest2));*/
+        var diff = Differ.generate(filepath1, filepath2);
+        System.out.println(diff);
         return 0;
     }
 
