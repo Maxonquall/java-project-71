@@ -27,22 +27,22 @@ public class Differ {
         for (String key : keys) {
             if (map1.containsKey(key) && map2.containsKey(key)) {
                 if (map1.get(key).equals(map2.get(key))) {
-                    result.add("  " + key + ": " + map1.get(key));
+                    result.add("    " + key + ": " + map1.get(key));
                 } else {
-                    result.add("- " + key + ": " + map1.get(key));
-                    result.add("+ " + key + ": " + map2.get(key));
+                    result.add("  - " + key + ": " + map1.get(key));
+                    result.add("  + " + key + ": " + map2.get(key));
                 }
             } else if (map1.containsKey(key)) {
-                result.add("- " + key + ": " + map1.get(key));
+                result.add("  - " + key + ": " + map1.get(key));
             } else {
-                result.add("+ " + key + ": " + map2.get(key));
+                result.add("  + " + key + ": " + map2.get(key));
             }
         }
-        var resutToString = "";
-        for (var i = 0; i < result.size() - 1; i++) {
+        var resutToString = "{\n";
+        for (var i = 0; i < result.size(); i++) {
             resutToString += result.get(i) + "\n";
         }
-        resutToString += result.get(result.size() - 1);
+        resutToString += "}";
 
         return resutToString;
 
