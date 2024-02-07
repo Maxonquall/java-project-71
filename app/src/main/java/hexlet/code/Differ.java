@@ -1,9 +1,11 @@
 package hexlet.code;
 
-import java.util.*;
-import java.util.stream.Collectors;
+//import java.util.*;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.TreeSet;
+import java.util.Set;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -17,8 +19,8 @@ public class Differ {
         var file1Str = Files.readString(file1);
         var file2Str = Files.readString(file2);
         ObjectMapper objectMapper = new ObjectMapper();
-        var map1 = objectMapper.readValue(file1Str, new TypeReference<Map<String,Object>>(){});
-        var map2 = objectMapper.readValue(file2Str, new TypeReference<Map<String,Object>>(){});
+        var map1 = objectMapper.readValue(file1Str, new TypeReference<Map<String, Object>>() { });
+        var map2 = objectMapper.readValue(file2Str, new TypeReference<Map<String, Object>>() { });
 
         var result = new ArrayList<String>();
 
