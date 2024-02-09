@@ -33,20 +33,19 @@ compileJava {
     options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
 }
 
-test {
-    finalizedBy jacocoTestReport // report is always generated after tests run
+tasks.test {
+    useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport)
 }
-jacocoTestReport {
-    dependsOn test // tests are required to run before generating the report
-}
+
 jacoco {
     toolVersion = "0.8.11"
-    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
 }
-jacocoTestReport {
+
+
+tasks.jacocoTestReport {
+    //dependsOn test
     reports {
-        xml.required = false
-        csv.required = false
-        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+        xml.required.set(true)
     }
 }
