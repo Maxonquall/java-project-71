@@ -33,8 +33,16 @@ compileJava {
     options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
 }
 
-tasks.jacocoTestReport {
+jacocoTestReport {
+    dependsOn test
     reports {
         xml.required = true
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('reports/jacoco/test/html')
     }
+}
+
+test {
+    finalizedBy jacocoTestReport
+    useJUnitPlatform()
 }
