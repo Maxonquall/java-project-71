@@ -33,19 +33,14 @@ compileJava {
     options.compilerArgs += ["-Aproject=${project.group}/${project.name}"]
 }
 
-tasks.test {
+test {
     useJUnitPlatform()
-    finalizedBy(tasks.jacocoTestReport)
+    finalizedBy jacocoTestReport
 }
 
-jacoco {
-    toolVersion = "0.8.11"
-}
-
-
-tasks.jacocoTestReport {
-    //dependsOn test
+jacocoTestReport {
+    dependsOn test
     reports {
-        xml.required.set(true)
+        xml.required = true
     }
 }
