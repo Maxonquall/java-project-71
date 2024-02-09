@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := build-run
 
 setup:
-	./app/gradlew wrapper --gradle-version 8.5
+	./app/gradlew wrapper --gradle-version 8.4
 
 clean:
 	./app/gradlew -p app clean
