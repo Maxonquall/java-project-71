@@ -1,10 +1,7 @@
 package hexlet.code;
 
-//import java.util.*;
+
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.TreeSet;
-import java.util.Set;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -12,7 +9,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Differ {
-    public static  String generate(String filepath1, String filepath2) throws Exception {
+    public static String generate(String filepath1, String filepath2) throws Exception {
 
         var file1 = Paths.get(filepath1).toAbsolutePath().normalize();
         var file2 = Paths.get(filepath2).toAbsolutePath().normalize();
@@ -21,32 +18,14 @@ public class Differ {
         ObjectMapper objectMapper = new ObjectMapper();
         var map1 = objectMapper.readValue(file1Str, new TypeReference<Map<String, Object>>() { });
         var map2 = objectMapper.readValue(file2Str, new TypeReference<Map<String, Object>>() { });
-
-        var result = new ArrayList<String>();
-
-        Set<String> keys = new TreeSet<>(map1.keySet());
-        keys.addAll(map2.keySet());
-        for (String key : keys) {
-            if (map1.containsKey(key) && map2.containsKey(key)) {
-                if (map1.get(key).equals(map2.get(key))) {
-                    result.add("    " + key + ": " + map1.get(key));
-                } else {
-                    result.add("  - " + key + ": " + map1.get(key));
-                    result.add("  + " + key + ": " + map2.get(key));
-                }
-            } else if (map1.containsKey(key)) {
-                result.add("  - " + key + ": " + map1.get(key));
-            } else {
-                result.add("  + " + key + ": " + map2.get(key));
-            }
+        var parsedList = Parser.compare(map1, map2);
+        StringBuilder resultToString = new StringBuilder("{\n");
+        for (String s : parsedList) {
+            resultToString.append(s).append("\n");
         }
-        var resutToString = "{\n";
-        for (var i = 0; i < result.size(); i++) {
-            resutToString += result.get(i) + "\n";
-        }
-        resutToString += "}";
+        resultToString.append("}");
 
-        return resutToString;
+        return resultToString.toString();
 
     }
 }
