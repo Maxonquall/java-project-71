@@ -3,7 +3,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
-/app/file1.json
+file1.json
 /app/file2.json
 /app/filepath1.yml
 /app/filepath2.yml
