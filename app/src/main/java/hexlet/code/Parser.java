@@ -26,12 +26,9 @@ public class Parser {
             } else {
                 result.add("  + " + key + ": " + map2.get(key));
             }
+
         }
-        switch (style) {
-            default -> {
-                return Stylish.format(result);
-            }
-        }
+                return Formatter.format(result, style);
     }
 
     public static String compare(Map<String, Object> map1Raw, Map<String, Object> map2Raw) {
