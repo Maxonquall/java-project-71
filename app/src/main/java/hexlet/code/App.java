@@ -5,14 +5,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 import java.util.concurrent.Callable;
-/*import java.io.File;
-import java.math.BigInteger;
-import java.nio.file.Files;
-import java.security.MessageDigest;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;*/
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
         description = "Compares two configuration files and shows a difference.")
@@ -31,7 +24,7 @@ class App implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        var diff = Differ.generate(filepath1, filepath2);
+        var diff = Differ.generate(filepath1, filepath2, format);
         System.out.println(diff);
         return 0;
     }

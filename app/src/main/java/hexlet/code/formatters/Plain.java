@@ -1,88 +1,48 @@
 package hexlet.code.formatters;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Map;
 public class Plain {
-    public static String make(List<String> parsedList) {
-        var diff = makeMap(parsedList);
-
-
-
+    public static String make(LinkedList<Map<String, Object>> parsedList) {
+        StringBuilder resultToString = new StringBuilder("");
+        for (var valueMapRaw : parsedList) {
+            var valueMap = replaceComplexValue(valueMapRaw);
+            if (valueMap.get("diff_value").equals("added")) {
+                resultToString.append("Property '" + valueMap.get("master_key") + "' was added with value: "
+                        + valueMap.get("new_value")).append("\n");
+            } else if (valueMap.get("diff_value").equals("deleted")) {
+                resultToString.append("Property '" + valueMap.get("master_key") + "' was removed").append("\n");
+            } else if (valueMap.get("diff_value").equals("changed")) {
+                resultToString.append("Property '" + valueMap.get("master_key") + "' was updated. From "
+                        + valueMap.get("old_value") + " to " + valueMap.get("new_value")).append("\n");
+            }
+        }
+        return resultToString.toString().trim();
     }
 
-    private static Map<String,String> makeMap(List<String> list) {
-        var map = new HashMap<String,String>();
-        for (var s : list) {
-            s = s.replace("  - ", "");
-            s = s.replace("  + ", "");
-            map.put(s.split(":")[0], s.split(":")[1]);
+    private static Map<String, Object> replaceComplexValue(Map<String, Object> map) {
+        var key = map.get("master_key");
+        if (map.get(key) instanceof String && !map.get(key).equals("null")) {
+            map.put("new_value", "'" + map.get("new_value") + "'");
+            map.put("old_value", "'" + map.get("old_value") + "'");
         }
+        if (map.get("new_value").equals("'true'")) {
+            map.put("new_value", "true");
+        }
+        if (map.get("old_value").equals("'true'")) {
+            map.put("old_value", "true");
+        }
+
+        var newValue = map.get("new_value").toString();
+        var oldValue = map.get("old_value").toString();
+        if (newValue.contains("[") || newValue.contains("{")) {
+            map.put("new_value", "[complex value]");
+        }
+        if (oldValue.contains("[") || oldValue.contains("{")) {
+            map.put("old_value", "[complex value]");
+        }
+
         return map;
     }
-
-
 }
-// resultToString.append(s).append("\n");
-/*{
-          chars1: [a, b, c]
-        - chars2: [d, e, f]
-        + chars2: false
-        - checked: false
-        + checked: true
-        - default: null
-        + default: [value1, value2]
-        - id: 45
-        + id: null
-        - key1: value1
-        + key2: value2
-          numbers1: [1, 2, 3, 4]
-        - numbers2: [2, 3, 4, 5]
-        + numbers2: [22, 33, 44, 55]
-        - numbers3: [3, 4, 5]
-        + numbers4: [4, 5, 6]
-        + obj1: {nestedKey=value, isNested=true}
-        - setting1: Some value
-        + setting1: Another value
-        - setting2: 200
-        + setting2: 300
-        - setting3: true
-        + setting3: none
-}*/
 
-/*  StringBuilder resultToString = new StringBuilder();
-        for (String s : parsedList) {
-
-            if (s.startsWith("  - ")) {
-                if (s.contains("[") || s.contains("{")) {
-                    resultToString.append(replaceBracket(s));
-                }
-                s = s.replace("  - ", "");
-                resultToString.append("Property '" + s.split(":")[0] + " was updated. From "
-                + s.split(":")[1] + " to ");
-            }
-
-            if (s.startsWith("  + ")) {
-                if (s.contains("[") || s.contains("{")) {
-                    resultToString.append(replaceBracket(s));
-                }
-                s = s.replace("  + ", "");
-                resultToString.append(s.split(":")[1]);
-            }
-
-        }
-        return resultToString.toString();*/
-
- /* private static String replaceBracket(String s) {
-        if (s.contains("[")) {
-            var substring = s.split("\\[");
-            substring[1] = "[complex value]";
-            s = substring[0] + substring[1];
-        }
-        if (s.contains("{")) {
-            var substring = s.split("\\{");
-            substring[1] = "[complex value]";
-            s = substring[0] + substring[1];
-        }
-        return s;
-    }*/

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Differ {
     public static String generate(String filepath1, String filepath2, String style) throws Exception {
-
         var file1 = Paths.get(filepath1).toAbsolutePath().normalize();
         var file2 = Paths.get(filepath2).toAbsolutePath().normalize();
         var file1Str = Files.readString(file1);
@@ -18,13 +17,12 @@ public class Differ {
         ObjectMapper objectMapper = new ObjectMapper();
         var map1 = objectMapper.readValue(file1Str, new TypeReference<Map<String, Object>>() { });
         var map2 = objectMapper.readValue(file2Str, new TypeReference<Map<String, Object>>() { });
-        var parsedList = Parser.compare(map1, map2, style);
-        return parsedList;
+        var diff = Parser.compare(map1, map2, style);
+        return diff;
 
     }
     public static String generate(String filepath1, String filepath2) throws Exception {
-        String style = "stylish";
-        return generate(filepath1, filepath2, style);
+        return generate(filepath1, filepath2, "stylish");
     }
 
 }
