@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.HashMap;
@@ -7,7 +9,8 @@ import java.util.TreeSet;
 import java.util.Set;
 
 public class Parser {
-    public static String compare(Map<String, Object> map1Raw, Map<String, Object> map2Raw, String style) {
+    public static String compare(Map<String, Object> map1Raw, Map<String, Object> map2Raw, String style)
+            throws JsonProcessingException {
         var result = new LinkedList<Map<String, Object>>();
         var map1 = replaceNull(map1Raw);
         var map2 = replaceNull(map2Raw);

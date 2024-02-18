@@ -16,3 +16,4 @@ make -C app build
 [![Difer.yml](https://asciinema.org/a/hi8lnT1ZWDol2Km62OT5gA9fJ.svg)](https://asciinema.org/a/hi8lnT1ZWDol2Km62OT5gA9fJ)
 [![Stylish](https://asciinema.org/a/ZCdNET9cPTopGJp58x7W3SZIY.svg)](https://asciinema.org/a/ZCdNET9cPTopGJp58x7W3SZIY)
 [![Plain](https://asciinema.org/a/Qx1qXpj4QcNYwtZEl9OJlNOut.svg)](https://asciinema.org/a/Qx1qXpj4QcNYwtZEl9OJlNOut)
+[![Json](https://asciinema.org/a/w416zZHdYJcUnZTjhKKJUi8dV.svg)](https://asciinema.org/a/w416zZHdYJcUnZTjhKKJUi8dV)
