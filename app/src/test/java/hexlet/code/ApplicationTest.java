@@ -33,7 +33,23 @@ class ApplicationTest {
                   - setting3: true
                   + setting3: none
                 }""";
-        String actual = Differ.generate("filepath1.yml", "filepath2.yml");
+        String actual = Differ.generate("filepath1.json", "filepath2.json");
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    void ymlTest() throws Exception {
+        String expected = """
+                {
+                  - follow: false
+                    host: hexlet.io
+                  - proxy: 123.234.53.22
+                  - timeout: 50
+                  + timeout: 20
+                  + verbose: true
+                }""";
+        String actual = Differ.generate("file1.yml", "file2.yml");
         assertEquals(expected, actual);
 
     }
@@ -54,7 +70,7 @@ class ApplicationTest {
                 Property 'setting1' was updated. From 'Some value' to 'Another value'
                 Property 'setting2' was updated. From 200 to 300
                 Property 'setting3' was updated. From true to 'none'""";
-        String actual = Differ.generate("filepath1.yml", "filepath2.yml", "plain");
+        String actual = Differ.generate("filepath1.json", "filepath2.json", "plain");
         assertEquals(expected, actual);
     }
 
@@ -77,7 +93,7 @@ class ApplicationTest {
                 + "\"Another value\"},"
                 + "{\"key\":\"setting2\",\"status\":\"changed\",\"old_value\":200,\"new_value\":300},"
                 + "{\"key\":\"setting3\",\"status\":\"changed\",\"old_value\":true,\"new_value\":\"none\"}]";
-        String actual = Differ.generate("filepath1.yml", "filepath2.yml", "json");
+        String actual = Differ.generate("filepath1.json", "filepath2.json", "json");
         assertEquals(expected, actual);
     }
 }
