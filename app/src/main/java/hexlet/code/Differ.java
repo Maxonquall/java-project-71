@@ -29,7 +29,7 @@ public class Differ {
                 var map2 = mapper.readValue(file2Str, new TypeReference<Map<String, Object>>() { });
                 diff = Parser.compare(map1, map2, style);
             }
-            case "json " -> {
+            case "json" -> {
                 ObjectMapper objectMapper = new ObjectMapper();
                 var map1 = objectMapper.readValue(file1Str, new TypeReference<Map<String, Object>>() { });
                 var map2 = objectMapper.readValue(file2Str, new TypeReference<Map<String, Object>>() { });
