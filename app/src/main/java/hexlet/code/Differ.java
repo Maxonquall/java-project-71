@@ -16,7 +16,6 @@ public class Differ {
         var file2 = Paths.get(filepath2).toAbsolutePath().normalize();
         var file1Str = Files.readString(file1);
         var file2Str = Files.readString(file2);
-        //var dataFormat = file1Str.split(".")[1];
         int index = filepath1.lastIndexOf('.');
         var dataFormat = index > 0
                 ? filepath1.substring(index + 1)
