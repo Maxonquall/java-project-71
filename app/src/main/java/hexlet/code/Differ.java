@@ -12,8 +12,8 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 public class Differ {
     public static String generate(String filepath1, String filepath2, String style) throws Exception {
         var diff = "";
-        var file1 = Paths.get(filepath1).toAbsolutePath().normalize();
-        var file2 = Paths.get(filepath2).toAbsolutePath().normalize();
+        var file1 = Paths.get("src/main/resources/" + filepath1).toAbsolutePath().normalize();
+        var file2 = Paths.get("src/main/resources/" + filepath2).toAbsolutePath().normalize();
         var file1Str = Files.readString(file1);
         var file2Str = Files.readString(file2);
         int index = filepath1.lastIndexOf('.');
