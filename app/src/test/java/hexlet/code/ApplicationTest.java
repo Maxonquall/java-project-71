@@ -15,7 +15,7 @@ class ApplicationTest {
     private static String readFile(String fileName) throws IOException {
         return Files.readString(Paths.get(fileName).toAbsolutePath().normalize()).trim();
     }
-    final static String prefix = "src/test/resources/fixtures/";
+    final  String prefix = "src/test/resources/fixtures/";
 
     @Test
     void jsonDefaultTest() throws Exception  {
