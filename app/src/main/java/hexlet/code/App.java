@@ -17,7 +17,7 @@ class App implements Callable<Integer> {
     @Parameters(index = "1", paramLabel = "filepath2", description = "path to 2nd file.")
     private String filepath2;
 
-    @Option(names = {"-f", "--format"}, defaultValue = "123",
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish",
             paramLabel = "format",
             description = "output format [default: stylish]")
     private String format = "format";
