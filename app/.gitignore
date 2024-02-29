@@ -17,6 +17,7 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 .idea
+\\wsl$\Ubuntu\home\maxim\java-project-71\.idea
 
 ### Eclipse ###
 .apt_generated

@@ -18,28 +18,28 @@ class ApplicationTest {
 
     @Test
     void jsonDefaultTest() throws Exception  {
-        String expected = readFile("src/test/resources/fixtures/Stylish");
+        String expected = readFile("src/test/resources/fixtures/Stylish.txt");
         String actual = Differ.generate("src/test/resources/fixtures/file1.json",
                 "src/test/resources/fixtures/file2.json");
         assertEquals(expected, actual);
     }
     @Test
     void ymlDefaultTest() throws Exception  {
-        String expected = readFile("src/test/resources/fixtures/Stylish");
+        String expected = readFile("src/test/resources/fixtures/Stylish.txt");
         String actual = Differ.generate("src/test/resources/fixtures/file1.yml",
                 "src/test/resources/fixtures/file2.yml");
         assertEquals(expected, actual);
     }
     @Test
         void jsonStylishTest() throws Exception  {
-        String expected = readFile("src/test/resources/fixtures/Stylish");
+        String expected = readFile("src/test/resources/fixtures/Stylish.txt");
         String actual = Differ.generate("src/test/resources/fixtures/file1.json",
                 "src/test/resources/fixtures/file2.json", "stylish");
         assertEquals(expected, actual);
     }
     @Test
     void ymlStylishTest() throws Exception  {
-        String expected = readFile("src/test/resources/fixtures/Stylish");
+        String expected = readFile("src/test/resources/fixtures/Stylish.txt");
         String actual = Differ.generate("src/test/resources/fixtures/file1.yml",
                 "src/test/resources/fixtures/file2.yml", "stylish");
         assertEquals(expected, actual);
@@ -47,7 +47,7 @@ class ApplicationTest {
 
     @Test
     void jsonPlainTest() throws Exception  {
-        String expected = readFile("src/test/resources/fixtures/Plain");
+        String expected = readFile("src/test/resources/fixtures/Plain.txt");
         String actual = Differ.generate("src/test/resources/fixtures/file1.json",
                 "src/test/resources/fixtures/file2.json", "plain");
         assertEquals(expected, actual);
@@ -55,7 +55,7 @@ class ApplicationTest {
 
     @Test
     void ymlPlainTest() throws Exception  {
-        String expected = readFile("src/test/resources/fixtures/Plain");
+        String expected = readFile("src/test/resources/fixtures/Plain.txt");
         String actual = Differ.generate("src/test/resources/fixtures/file1.yml",
                 "src/test/resources/fixtures/file2.yml", "plain");
         assertEquals(expected, actual);
@@ -63,7 +63,7 @@ class ApplicationTest {
 
     @Test
     void jsonJsonTest() throws Exception  {
-        String expected = readFile("src/test/resources/fixtures/JSON");
+        String expected = readFile("src/test/resources/fixtures/JSON.txt");
         String actual = Differ.generate("src/test/resources/fixtures/file1.json",
                 "src/test/resources/fixtures/file2.json", "json");
         assertEquals(expected, actual);
@@ -71,7 +71,7 @@ class ApplicationTest {
 
     @Test
     void ymlJsonTest() throws Exception  {
-        String expected = readFile("src/test/resources/fixtures/JSON");
+        String expected = readFile("src/test/resources/fixtures/JSON.txt");
         String actual = Differ.generate("src/test/resources/fixtures/file1.yml",
                 "src/test/resources/fixtures/file2.yml", "json");
         assertEquals(expected, actual);

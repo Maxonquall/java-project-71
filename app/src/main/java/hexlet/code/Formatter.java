@@ -4,22 +4,23 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import hexlet.code.formatters.Json;
 import hexlet.code.formatters.Plain;
 import hexlet.code.formatters.Stylish;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class Formatter {
-    public static String format(LinkedList<Map<String, Object>> parsedList, String style)
+    public static String format(List<Map<String, Object>> parsedList, String style)
             throws JsonProcessingException {
         switch (style) {
+            case  "stylish" -> {
+                return Stylish.make(parsedList);
+            }
             case "plain" -> {
                 return Plain.make(parsedList);
             }
             case "json" -> {
                 return Json.make(parsedList);
             }
-            default -> {
-                return Stylish.make(parsedList);
-            }
+            default -> throw new IllegalArgumentException("Wrong formatter type");
         }
 
     }
