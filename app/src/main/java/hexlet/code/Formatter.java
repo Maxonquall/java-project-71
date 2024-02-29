@@ -20,9 +20,7 @@ public class Formatter {
             case "json" -> {
                 return Json.make(parsedList);
             }
-            default -> /* throw new IllegalArgumentException("Wrong formatter type")*/ {
-                return Stylish.make(parsedList);
-            }
+            default -> throw new IllegalArgumentException("Wrong formatter type");
         }
 
     }
