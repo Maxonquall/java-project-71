@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Stylish {
-    public static String make(List<Map<String, Object>> parsedList) {
+    public static String format(List<Map<String, Object>> parsedList) {
         StringBuilder resultToString = new StringBuilder("{\n");
 
         for (var valueMap : parsedList) {

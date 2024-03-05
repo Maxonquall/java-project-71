@@ -3,7 +3,7 @@ package hexlet.code.formatters;
 import java.util.List;
 import java.util.Map;
 public class Plain {
-    public static String make(List<Map<String, Object>> parsedList) {
+    public static String format(List<Map<String, Object>> parsedList) {
         StringBuilder resultToString = new StringBuilder("");
         for (var valueMapRaw : parsedList) {
             var valueMap = replaceComplexValue(valueMapRaw);

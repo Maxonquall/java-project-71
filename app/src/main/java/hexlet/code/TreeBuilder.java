@@ -8,11 +8,9 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.HashMap;
 
-public class Comparator {
-    public static List<Map<String, Object>> compare(Map<String, Object> map1, Map<String, Object> map2) {
+public class TreeBuilder {
+    public static List<Map<String, Object>> build(Map<String, Object> map1, Map<String, Object> map2) {
         var result = new LinkedList<Map<String, Object>>();
-        preprocess(map1);
-        preprocess(map2);
         Set<String> keys = new TreeSet<>(map1.keySet());
         keys.addAll(map2.keySet());
         for (String key : keys) {
@@ -26,7 +24,7 @@ public class Comparator {
                 valueMap.put(key, map1.get(key));
                 valueMap.put("diffValue", "deleted");
                 valueMap.put("oldValue", map1.get(key));
-            } else if (map1.get(key).equals(map2.get(key))) {
+            } else if (isEqual(map1.get(key), map2.get(key))) {
                 valueMap.put(key, map1.get(key));
                 valueMap.put("diffValue", "unchanged");
                 valueMap.put("oldValue", map1.get(key));
@@ -37,7 +35,6 @@ public class Comparator {
                 valueMap.put("oldValue", map1.get(key));
                 valueMap.put("newValue", map2.get(key));
             }
-            postProcess(valueMap);
             result.add(valueMap);
         }
 
@@ -45,20 +42,9 @@ public class Comparator {
 
     }
 
-    private static Map<String, Object> preprocess(Map<String, Object> map) {
-        for (var entry : map.entrySet()) {
-            if (entry.getValue() == null) {
-                entry.setValue("null");
-            }
-        }
-        return map;
-    }
-    private static Map<String, Object> postProcess(Map<String, Object> map) {
-        for (var entry : map.entrySet()) {
-            if (entry.getValue() == "null") {
-                entry.setValue(null);
-            }
-        }
-        return map;
+    private static boolean isEqual(Object getValue1, Object getValue2) {
+        Object value1 = getValue1 == null ? "null" : getValue1;
+        Object value2 = getValue2 == null ? "null" : getValue2;
+        return value1.equals(value2);
     }
 }

@@ -63,7 +63,7 @@ class ApplicationTest {
 
     @Test
     void jsonJsonTest() throws Exception  {
-        String expected = readFile("src/test/resources/fixtures/JSON.txt");
+        String expected = readFile("src/test/resources/fixtures/JSON.json");
         String actual = Differ.generate("src/test/resources/fixtures/file1.json",
                 "src/test/resources/fixtures/file2.json", "json");
         assertEquals(expected, actual);
@@ -71,7 +71,7 @@ class ApplicationTest {
 
     @Test
     void ymlJsonTest() throws Exception  {
-        String expected = readFile("src/test/resources/fixtures/JSON.txt");
+        String expected = readFile("src/test/resources/fixtures/JSON.json");
         String actual = Differ.generate("src/test/resources/fixtures/file1.yml",
                 "src/test/resources/fixtures/file2.yml", "json");
         assertEquals(expected, actual);

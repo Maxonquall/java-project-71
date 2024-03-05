@@ -12,13 +12,13 @@ public class Formatter {
             throws JsonProcessingException {
         switch (style) {
             case  "stylish" -> {
-                return Stylish.make(parsedList);
+                return Stylish.format(parsedList);
             }
             case "plain" -> {
-                return Plain.make(parsedList);
+                return Plain.format(parsedList);
             }
             case "json" -> {
-                return Json.make(parsedList);
+                return Json.format(parsedList);
             }
             default -> throw new IllegalArgumentException("Wrong formatter type");
         }
