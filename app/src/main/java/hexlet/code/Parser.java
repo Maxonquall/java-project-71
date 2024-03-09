@@ -5,13 +5,14 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 
+import java.util.List;
 import java.util.Map;
 import java.util.LinkedList;
 
 
 public class Parser {
 
-    public static String parse(String file1, String file2, String dataFormat, String style)
+    public static List<Map<String, Object>> parse(String file1, String file2, String dataFormat)
             throws JsonProcessingException {
         var diffList = new LinkedList<Map<String, Object>>();
         switch (dataFormat) {
@@ -29,8 +30,6 @@ public class Parser {
             }
             default -> throw new IllegalArgumentException("Wrong format");
         }
-        return Formatter.format(diffList, style);
-
+        return diffList;
     }
-
 }

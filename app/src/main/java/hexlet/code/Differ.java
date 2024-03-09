@@ -10,12 +10,9 @@ public class Differ {
         var file1Str = Files.readString(file1);
         var file2Str = Files.readString(file2);
         int index = filepath1.lastIndexOf('.');
-        var dataFormat = index > 0
-                ? filepath1.substring(index + 1)
-                : "";
-        return Parser.parse(file1Str, file2Str, dataFormat, style);
-
-
+        var dataFormat = index > 0 ? filepath1.substring(index + 1) : "";
+        var diffList = Parser.parse(file1Str, file2Str, dataFormat);
+        return Formatter.format(diffList, style);
     }
 
     public static String generate(String filepath1, String filepath2) throws Exception {

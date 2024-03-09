@@ -41,7 +41,6 @@ public class TreeBuilder {
         return result;
 
     }
-
     private static boolean isEqual(Object getValue1, Object getValue2) {
         Object value1 = getValue1 == null ? "null" : getValue1;
         Object value2 = getValue2 == null ? "null" : getValue2;
